@@ -1,19 +1,47 @@
-import { motion } from 'framer-motion';
-import ScrollReveal from '../ui/ScrollReveal';
-import SectionTitle from '../ui/SectionTitle';
+import { motion } from "framer-motion";
+import ScrollReveal from "../ui/ScrollReveal";
+import SectionTitle from "../ui/SectionTitle";
+import type { FC } from "react";
 
 const INITIATIVES = [
-  { icon: '💻', title: 'Smart Classrooms',  desc: '6 schools equipped with digital projectors, e-content, and Wi-Fi.' },
-  { icon: '📱', title: 'Free Tablets',      desc: '400 tablets distributed to students of Class 6–12.' },
-  { icon: '👩‍🏫', title: 'Teacher Training', desc: 'Monthly workshops on digital pedagogy and STEM methods.' },
-  { icon: '🎒', title: 'Mid-Day Meal Plus', desc: 'Nutrition-enhanced meals with eggs, milk, and seasonal fruit daily.' },
-  { icon: '🏫', title: 'School Rebuilding', desc: '3 schools rebuilt with modern classrooms, labs, and libraries.' },
-  { icon: '🎓', title: 'Scholarship Portal',desc: '200+ scholarships managed digitally — zero leakage.' },
+  {
+    icon: "💻",
+    title: "Smart Classrooms",
+    desc: "6 schools equipped with digital projectors, e-content, and Wi-Fi.",
+  },
+  {
+    icon: "📱",
+    title: "Free Tablets",
+    desc: "400 tablets distributed to students of Class 6–12.",
+  },
+  {
+    icon: "👩‍🏫",
+    title: "Teacher Training",
+    desc: "Monthly workshops on digital pedagogy and STEM methods.",
+  },
+  {
+    icon: "🎒",
+    title: "Mid-Day Meal Plus",
+    desc: "Nutrition-enhanced meals with eggs, milk, and seasonal fruit daily.",
+  },
+  {
+    icon: "🏫",
+    title: "School Rebuilding",
+    desc: "3 schools rebuilt with modern classrooms, labs, and libraries.",
+  },
+  {
+    icon: "🎓",
+    title: "Scholarship Portal",
+    desc: "200+ scholarships managed digitally — zero leakage.",
+  },
 ];
 
-export default function EducationSection() {
+const EducationSection: FC = () => {
   return (
-    <section id="education" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative overflow-hidden">
+    <section
+      id="education"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative overflow-hidden"
+    >
       <div className="absolute top-20 right-10 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
@@ -35,13 +63,14 @@ export default function EducationSection() {
                   {item.icon}
                 </div>
                 <h4 className="text-white font-bold mb-2">{item.title}</h4>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
               </motion.div>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Impact banner */}
         <ScrollReveal delay={0.3}>
           <motion.div
             whileHover={{ scale: 1.01 }}
@@ -49,9 +78,10 @@ export default function EducationSection() {
           >
             <div className="text-4xl mb-3">🎓</div>
             <p className="text-gray-300 text-lg mb-2">
-              School dropout rate dropped from{' '}
-              <span className="text-red-400 font-bold">34%</span> to{' '}
-              <span className="text-green-400 font-bold text-2xl">3%</span> in 3 years.
+              School dropout rate dropped from{" "}
+              <span className="text-red-400 font-bold">34%</span> to{" "}
+              <span className="text-green-400 font-bold text-2xl">3%</span> in 3
+              years.
             </p>
             <p className="text-gray-500 text-sm font-hindi">
               तीन वर्षों में स्कूल छोड़ने की दर ३४% से घटकर ३% हो गई।
@@ -61,4 +91,6 @@ export default function EducationSection() {
       </div>
     </section>
   );
-}
+};
+
+export default EducationSection;

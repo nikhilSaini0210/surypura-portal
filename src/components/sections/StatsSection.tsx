@@ -1,9 +1,10 @@
-import { motion } from 'framer-motion';
-import AnimatedCounter from '../ui/AnimatedCounter';
-import ScrollReveal from '../ui/ScrollReveal';
-import { STATS } from '../../data/content';
+import { motion } from "framer-motion";
+import AnimatedCounter from "../ui/AnimatedCounter";
+import ScrollReveal from "../ui/ScrollReveal";
+import { STATS } from "../../data/content";
+import type { FC } from "react";
 
-export default function StatsSection() {
+const StatsSection: FC = () => {
   return (
     <section className="py-16 bg-gray-950 border-y border-white/5 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-green-900/10 via-transparent to-green-900/10 pointer-events-none" />
@@ -28,7 +29,9 @@ export default function StatsSection() {
                 <div className="font-bold text-2xl sm:text-3xl text-white mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </div>
-                <p className="text-gray-400 text-xs leading-tight">{stat.label}</p>
+                <p className="text-gray-400 text-xs leading-tight">
+                  {stat.label}
+                </p>
               </motion.div>
             </ScrollReveal>
           ))}
@@ -36,4 +39,6 @@ export default function StatsSection() {
       </div>
     </section>
   );
-}
+};
+
+export default StatsSection;

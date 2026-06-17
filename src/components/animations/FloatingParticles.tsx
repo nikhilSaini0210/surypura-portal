@@ -1,6 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type FC } from "react";
 
-const COLORS = ['#22c55e', '#f59e0b', '#f97316', '#86efac', '#fbbf24'];
+const COLORS = ["#22c55e", "#f59e0b", "#f97316", "#86efac", "#fbbf24"];
 
 interface Particle {
   x: number;
@@ -12,34 +12,34 @@ interface Particle {
   color: string;
 }
 
-export default function FloatingParticles({ count = 60 }: { count?: number }) {
+const FloatingParticles: FC<{ count?: number }> = ({ count = 60 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let animId: number;
     const particles: Particle[] = [];
 
     const resize = () => {
-      canvas.width  = window.innerWidth;
+      canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener("resize", resize);
 
     for (let i = 0; i < count; i++) {
       particles.push({
-        x:       Math.random() * canvas.width,
-        y:       Math.random() * canvas.height,
-        vx:      (Math.random() - 0.5) * 0.4,
-        vy:      (Math.random() - 0.5) * 0.4,
-        size:    Math.random() * 2.5 + 0.5,
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        size: Math.random() * 2.5 + 0.5,
         opacity: Math.random() * 0.5 + 0.1,
-        color:   COLORS[Math.floor(Math.random() * COLORS.length)],
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
       });
     }
 
@@ -67,7 +67,7 @@ export default function FloatingParticles({ count = 60 }: { count?: number }) {
 
     return () => {
       cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
+      window.removeEventListener("resize", resize);
     };
   }, [count]);
 
@@ -78,4 +78,6 @@ export default function FloatingParticles({ count = 60 }: { count?: number }) {
       style={{ zIndex: 1 }}
     />
   );
-}
+};
+
+export default FloatingParticles;

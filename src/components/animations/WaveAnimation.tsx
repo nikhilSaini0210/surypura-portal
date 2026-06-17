@@ -1,4 +1,6 @@
-export default function WaveAnimation({ color = '#052e16' }: { color?: string }) {
+import type { FC } from "react";
+
+const WaveAnimation: FC<{ color?: string }> = ({ color = "#052e16" }) => {
   return (
     <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none">
       <svg
@@ -14,4 +16,6 @@ export default function WaveAnimation({ color = '#052e16' }: { color?: string })
       </svg>
     </div>
   );
-}
+};
+
+export default WaveAnimation;

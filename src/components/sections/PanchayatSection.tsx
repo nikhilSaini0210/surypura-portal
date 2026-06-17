@@ -1,25 +1,70 @@
-import { motion } from 'framer-motion';
-import ScrollReveal from '../ui/ScrollReveal';
-import SectionTitle from '../ui/SectionTitle';
+import { motion } from "framer-motion";
+import ScrollReveal from "../ui/ScrollReveal";
+import SectionTitle from "../ui/SectionTitle";
+import type { FC } from "react";
 
 const GOVERNANCE_ITEMS = [
-  { icon: '📋', title: 'Monthly Gram Sabha',     desc: 'Open public meetings every first Sunday — all decisions taken collectively.' },
-  { icon: '🖥️', title: 'Online Complaint Portal', desc: 'Grievances submitted online, resolved within 15 days — tracked publicly.' },
-  { icon: '📊', title: 'Budget Transparency',     desc: 'All Panchayat budgets and expenditures published on village notice board and website.' },
-  { icon: '📜', title: 'RTI Compliance',          desc: '100% RTI response rate within 7 days — all documents available digitally.' },
+  {
+    icon: "📋",
+    title: "Monthly Gram Sabha",
+    desc: "Open public meetings every first Sunday — all decisions taken collectively.",
+  },
+  {
+    icon: "🖥️",
+    title: "Online Complaint Portal",
+    desc: "Grievances submitted online, resolved within 15 days — tracked publicly.",
+  },
+  {
+    icon: "📊",
+    title: "Budget Transparency",
+    desc: "All Panchayat budgets and expenditures published on village notice board and website.",
+  },
+  {
+    icon: "📜",
+    title: "RTI Compliance",
+    desc: "100% RTI response rate within 7 days — all documents available digitally.",
+  },
 ];
 
 const MEMBERS = [
-  { name: 'Rameshwar Patel', nameHindi: 'रमेश्वर पटेल', role: 'Sarpanch',       emoji: '👨‍💼' },
-  { name: 'Savita Bai',      nameHindi: 'सविता बाई',    role: 'Deputy Sarpanch', emoji: '👩‍💼' },
-  { name: 'Kishan Das',      nameHindi: 'किशन दास',     role: 'Ward Member 1',   emoji: '👨‍🌾' },
-  { name: 'Meena Kumari',    nameHindi: 'मीना कुमारी',  role: 'Ward Member 2',   emoji: '👩‍🌾' },
-  { name: 'Arjun Singh',     nameHindi: 'अर्जुन सिंह',  role: 'Ward Member 3',   emoji: '👨‍💼' },
+  {
+    name: "Rameshwar Patel",
+    nameHindi: "रमेश्वर पटेल",
+    role: "Sarpanch",
+    emoji: "👨‍💼",
+  },
+  {
+    name: "Savita Bai",
+    nameHindi: "सविता बाई",
+    role: "Deputy Sarpanch",
+    emoji: "👩‍💼",
+  },
+  {
+    name: "Kishan Das",
+    nameHindi: "किशन दास",
+    role: "Ward Member 1",
+    emoji: "👨‍🌾",
+  },
+  {
+    name: "Meena Kumari",
+    nameHindi: "मीना कुमारी",
+    role: "Ward Member 2",
+    emoji: "👩‍🌾",
+  },
+  {
+    name: "Arjun Singh",
+    nameHindi: "अर्जुन सिंह",
+    role: "Ward Member 3",
+    emoji: "👨‍💼",
+  },
 ];
 
-export default function PanchayatSection() {
+const PanchayatSection: FC = () => {
   return (
-    <section id="panchayat" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-red-950/10 relative overflow-hidden">
+    <section
+      id="panchayat"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-950 to-red-950/10 relative overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <SectionTitle
           badge="🏛️ Panchayati Raj"
@@ -29,7 +74,6 @@ export default function PanchayatSection() {
         />
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Governance initiatives */}
           <ScrollReveal direction="left">
             <div className="space-y-4">
               {GOVERNANCE_ITEMS.map((item, i) => (
@@ -44,7 +88,9 @@ export default function PanchayatSection() {
                 >
                   <div className="text-2xl flex-shrink-0">{item.icon}</div>
                   <div>
-                    <h4 className="text-white font-semibold mb-1">{item.title}</h4>
+                    <h4 className="text-white font-semibold mb-1">
+                      {item.title}
+                    </h4>
                     <p className="text-gray-400 text-sm">{item.desc}</p>
                   </div>
                 </motion.div>
@@ -52,10 +98,11 @@ export default function PanchayatSection() {
             </div>
           </ScrollReveal>
 
-          {/* Members list */}
           <ScrollReveal direction="right" delay={0.2}>
             <div>
-              <h3 className="text-xl font-bold text-white mb-6">Elected Representatives</h3>
+              <h3 className="text-xl font-bold text-white mb-6">
+                Elected Representatives
+              </h3>
               <div className="space-y-3">
                 {MEMBERS.map((m, i) => (
                   <motion.div
@@ -71,8 +118,12 @@ export default function PanchayatSection() {
                       {m.emoji}
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-sm">{m.name}</p>
-                      <p className="text-gray-500 text-xs font-hindi">{m.nameHindi}</p>
+                      <p className="text-white font-semibold text-sm">
+                        {m.name}
+                      </p>
+                      <p className="text-gray-500 text-xs font-hindi">
+                        {m.nameHindi}
+                      </p>
                       <p className="text-green-400 text-xs">{m.role}</p>
                     </div>
                   </motion.div>
@@ -84,4 +135,6 @@ export default function PanchayatSection() {
       </div>
     </section>
   );
-}
+};
+
+export default PanchayatSection;

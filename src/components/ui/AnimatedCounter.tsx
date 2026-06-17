@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useEffect, useRef, useState, type FC } from "react";
+import { useInView } from "react-intersection-observer";
 
 interface AnimatedCounterProps {
   target: number;
@@ -8,12 +8,12 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-export default function AnimatedCounter({
+const AnimatedCounter: FC<AnimatedCounterProps> = ({
   target,
-  suffix = '',
+  suffix = "",
   duration = 2000,
-  className = '',
-}: AnimatedCounterProps) {
+  className = "",
+}) => {
   const [count, setCount] = useState(0);
   const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
   const hasAnimated = useRef(false);
@@ -27,7 +27,6 @@ export default function AnimatedCounter({
     const update = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // easeOutQuart easing
       const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.round(target * eased));
       if (progress < 1) requestAnimationFrame(update);
@@ -38,7 +37,10 @@ export default function AnimatedCounter({
 
   return (
     <span ref={ref} className={className}>
-      {count.toLocaleString('en-IN')}{suffix}
+      {count.toLocaleString("en-IN")}
+      {suffix}
     </span>
   );
-}
+};
+
+export default AnimatedCounter;

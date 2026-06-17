@@ -1,31 +1,44 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import ScrollReveal from '../ui/ScrollReveal';
-import SectionTitle from '../ui/SectionTitle';
+import { useState, type FC } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import ScrollReveal from "../ui/ScrollReveal";
+import SectionTitle from "../ui/SectionTitle";
 
 const GALLERY_ITEMS = [
-  { id: 1, emoji: '🌅', label: 'Sunrise over Surypura',  category: 'Village'    },
-  { id: 2, emoji: '🛣️', label: 'New Highway Road',       category: 'Roads'      },
-  { id: 3, emoji: '📚', label: 'Smart Classroom',         category: 'Education'  },
-  { id: 4, emoji: '🌾', label: 'Harvest Festival',        category: 'Farmers'    },
-  { id: 5, emoji: '☀️', label: 'Solar Street Lights',    category: 'Energy'     },
-  { id: 6, emoji: '🏛️', label: 'Gram Sabha Meeting',     category: 'Governance' },
-  { id: 7, emoji: '💧', label: 'Drip Irrigation Fields', category: 'Farmers'    },
-  { id: 8, emoji: '📱', label: 'Jan Seva Kendra',         category: 'Digital'    },
-  { id: 9, emoji: '🎓', label: 'Scholarship Ceremony',   category: 'Education'  },
+  { id: 1, emoji: "🌅", label: "Sunrise over Surypura", category: "Village" },
+  { id: 2, emoji: "🛣️", label: "New Highway Road", category: "Roads" },
+  { id: 3, emoji: "📚", label: "Smart Classroom", category: "Education" },
+  { id: 4, emoji: "🌾", label: "Harvest Festival", category: "Farmers" },
+  { id: 5, emoji: "☀️", label: "Solar Street Lights", category: "Energy" },
+  { id: 6, emoji: "🏛️", label: "Gram Sabha Meeting", category: "Governance" },
+  { id: 7, emoji: "💧", label: "Drip Irrigation Fields", category: "Farmers" },
+  { id: 8, emoji: "📱", label: "Jan Seva Kendra", category: "Digital" },
+  { id: 9, emoji: "🎓", label: "Scholarship Ceremony", category: "Education" },
 ];
 
-const CATS = ['All', 'Village', 'Roads', 'Education', 'Farmers', 'Energy', 'Governance', 'Digital'];
+const CATS = [
+  "All",
+  "Village",
+  "Roads",
+  "Education",
+  "Farmers",
+  "Energy",
+  "Governance",
+  "Digital",
+];
 
-export default function GallerySection() {
-  const [active, setActive] = useState('All');
+const GallerySection: FC = () => {
+  const [active, setActive] = useState("All");
 
-  const filtered = active === 'All'
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter((i) => i.category === active);
+  const filtered =
+    active === "All"
+      ? GALLERY_ITEMS
+      : GALLERY_ITEMS.filter((i) => i.category === active);
 
   return (
-    <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative">
+    <section
+      id="gallery"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative"
+    >
       <div className="max-w-7xl mx-auto">
         <SectionTitle
           badge="📸 Photo Gallery"
@@ -34,7 +47,6 @@ export default function GallerySection() {
           subtitle="Moments that capture the transformation of a village and the spirit of its people."
         />
 
-        {/* Filter buttons */}
         <ScrollReveal>
           <div className="flex flex-wrap gap-2 justify-center mb-10">
             {CATS.map((cat) => (
@@ -45,8 +57,8 @@ export default function GallerySection() {
                 onClick={() => setActive(cat)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   active === cat
-                    ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
-                    : 'backdrop-blur-md bg-white/5 border border-white/10 text-gray-400 hover:text-white'
+                    ? "bg-green-500 text-white shadow-lg shadow-green-500/30"
+                    : "backdrop-blur-md bg-white/5 border border-white/10 text-gray-400 hover:text-white"
                 }`}
               >
                 {cat}
@@ -55,7 +67,6 @@ export default function GallerySection() {
           </div>
         </ScrollReveal>
 
-        {/* Gallery grid */}
         <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           <AnimatePresence>
             {filtered.map((item) => (
@@ -86,4 +97,6 @@ export default function GallerySection() {
       </div>
     </section>
   );
-}
+};
+
+export default GallerySection;

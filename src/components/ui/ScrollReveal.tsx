@@ -1,10 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { type FC } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
+  direction?: "up" | "down" | "left" | "right" | "none";
   delay?: number;
   duration?: number;
   className?: string;
@@ -12,21 +12,21 @@ interface ScrollRevealProps {
 }
 
 const directionVariants = {
-  up:    { hidden: { opacity: 0, y: 60 },  visible: { opacity: 1, y: 0 } },
-  down:  { hidden: { opacity: 0, y: -60 }, visible: { opacity: 1, y: 0 } },
-  left:  { hidden: { opacity: 0, x: -60 }, visible: { opacity: 1, x: 0 } },
-  right: { hidden: { opacity: 0, x: 60 },  visible: { opacity: 1, x: 0 } },
-  none:  { hidden: { opacity: 0 },          visible: { opacity: 1 } },
+  up: { hidden: { opacity: 0, y: 60 }, visible: { opacity: 1, y: 0 } },
+  down: { hidden: { opacity: 0, y: -60 }, visible: { opacity: 1, y: 0 } },
+  left: { hidden: { opacity: 0, x: -60 }, visible: { opacity: 1, x: 0 } },
+  right: { hidden: { opacity: 0, x: 60 }, visible: { opacity: 1, x: 0 } },
+  none: { hidden: { opacity: 0 }, visible: { opacity: 1 } },
 };
 
-export default function ScrollReveal({
+const ScrollReveal: FC<ScrollRevealProps> = ({
   children,
-  direction = 'up',
+  direction = "up",
   delay = 0,
   duration = 0.7,
-  className = '',
+  className = "",
   once = true,
-}: ScrollRevealProps) {
+}) => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: once });
   const variants = directionVariants[direction];
 
@@ -35,11 +35,13 @@ export default function ScrollReveal({
       ref={ref}
       className={className}
       initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
+      animate={inView ? "visible" : "hidden"}
       variants={variants}
       transition={{ duration, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       {children}
     </motion.div>
   );
-}
+};
+
+export default ScrollReveal;

@@ -1,20 +1,24 @@
-import { motion } from 'framer-motion';
-import ScrollReveal from '../ui/ScrollReveal';
-import SectionTitle from '../ui/SectionTitle';
-import AnimatedCounter from '../ui/AnimatedCounter';
+import { motion } from "framer-motion";
+import ScrollReveal from "../ui/ScrollReveal";
+import SectionTitle from "../ui/SectionTitle";
+import AnimatedCounter from "../ui/AnimatedCounter";
+import type { FC } from "react";
 
 const SERVICES = [
-  { icon: '🪪', title: 'Aadhaar Enrollment',    count: 4200, suffix: '+' },
-  { icon: '🏦', title: 'Bank Account Linkage',  count: 3850, suffix: '+' },
-  { icon: '💊', title: 'Health Cards Issued',   count: 3200, suffix: '+' },
-  { icon: '👴', title: 'Pension Registrations', count: 420,  suffix: '+' },
-  { icon: '🌾', title: 'PM-Kisan Registered',   count: 850,  suffix: '+' },
-  { icon: '🏠', title: 'PM Awas (Housing)',      count: 280,  suffix: '+' },
+  { icon: "🪪", title: "Aadhaar Enrollment", count: 4200, suffix: "+" },
+  { icon: "🏦", title: "Bank Account Linkage", count: 3850, suffix: "+" },
+  { icon: "💊", title: "Health Cards Issued", count: 3200, suffix: "+" },
+  { icon: "👴", title: "Pension Registrations", count: 420, suffix: "+" },
+  { icon: "🌾", title: "PM-Kisan Registered", count: 850, suffix: "+" },
+  { icon: "🏠", title: "PM Awas (Housing)", count: 280, suffix: "+" },
 ];
 
-export default function DigitalSection() {
+const DigitalSection: FC = () => {
   return (
-    <section id="digital" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative overflow-hidden">
+    <section
+      id="digital"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950 relative overflow-hidden"
+    >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-purple-900/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative">
@@ -25,7 +29,6 @@ export default function DigitalSection() {
           subtitle="Surypura achieved 98% digital identity coverage — the highest in the district — through the Jan Seva Kendra model."
         />
 
-        {/* Big stats banner */}
         <ScrollReveal>
           <motion.div
             whileHover={{ scale: 1.005 }}
@@ -56,7 +59,6 @@ export default function DigitalSection() {
           </motion.div>
         </ScrollReveal>
 
-        {/* Services grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {SERVICES.map((s, i) => (
             <ScrollReveal key={s.title} delay={i * 0.08}>
@@ -64,7 +66,9 @@ export default function DigitalSection() {
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 text-center group hover:border-purple-500/20 transition-colors duration-300"
               >
-                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{s.icon}</div>
+                <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">
+                  {s.icon}
+                </div>
                 <div className="text-green-400 font-bold text-lg mb-1">
                   <AnimatedCounter target={s.count} suffix={s.suffix} />
                 </div>
@@ -76,4 +80,6 @@ export default function DigitalSection() {
       </div>
     </section>
   );
-}
+};
+
+export default DigitalSection;
